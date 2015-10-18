@@ -13,9 +13,9 @@ public class DomainElement {
 
 	private int[] values;
 
-	public DomainElement(int[] element) {
+	public DomainElement(int[] values) {
 		super();
-		this.values = element;
+		this.values = values;
 	}
 	
 	public int getNumberOfComponents() {
@@ -28,6 +28,10 @@ public class DomainElement {
 		return values[i];
 	}
 
+	public static DomainElement of(int[] values) {
+		return new DomainElement(values);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

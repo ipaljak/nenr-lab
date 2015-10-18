@@ -10,10 +10,8 @@ import java.util.Iterator;
  *
  */
 
-public interface IDomain<T> extends Iterable<T> {
-	
-	public Iterator<T> iterator();
-	
+public interface IDomain extends Iterable<DomainElement> {
+
 	public int getCardinality();
 	
 	public IDomain getComponent(int idx);
