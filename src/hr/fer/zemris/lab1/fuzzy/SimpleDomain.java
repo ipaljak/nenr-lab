@@ -1,6 +1,7 @@
 package hr.fer.zemris.lab1.fuzzy;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * <code>SimpleDomain</code> class is an extension of <code>Domain</code> 
@@ -46,8 +47,36 @@ public class SimpleDomain extends Domain {
 	
 	@Override
 	public Iterator<DomainElement> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SimpleDomainIterator();
+	}
+	
+	private class SimpleDomainIterator implements Iterator<DomainElement> {
+		
+		private int cursor; 
+		
+		public SimpleDomainIterator() {
+			this.cursor = SimpleDomain.this.first;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			return this.cursor < SimpleDomain.this.last;
+		}
+		
+		@Override
+		public DomainElement next() {
+			if (this.hasNext()) {
+				++cursor;
+				return DomainElement.of(cursor - 1);
+			}
+			throw new NoSuchElementException();
+		}
+		
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+		
 	}
 	
 }

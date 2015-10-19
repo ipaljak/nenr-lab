@@ -13,7 +13,7 @@ public class DomainElement {
 
 	private int[] values;
 
-	public DomainElement(int[] values) {
+	public DomainElement(int ... values) {
 		super();
 		this.values = values;
 	}
@@ -23,13 +23,26 @@ public class DomainElement {
 	}
 	
 	public int getComponentValue(int i) throws Exception {
-		if (i < 1 || i > this.getNumberOfComponents()) 
+		if (i < 0 || i > this.getNumberOfComponents()) 
 			throw new Exception("Index out of range!");
 		return values[i];
 	}
 
-	public static DomainElement of(int[] values) {
+	public static DomainElement of(int ... values) {
 		return new DomainElement(values);
+	}
+	
+	public boolean lessThan(DomainElement other) {
+		try {
+			for (int i = 0; i < this.getNumberOfComponents(); ++i) {
+				if (this.getComponentValue(i) != other.getComponentValue(i))
+					return this.getComponentValue(i) < other.getComponentValue(i);
+			}
+		} catch (Exception e) {
+			System.err.println("Non comparable domain elements");
+		}
+		return false;
+		
 	}
 	
 	@Override
@@ -56,11 +69,24 @@ public class DomainElement {
 	
 	@Override
 	public String toString() {
+		
+		if (this.getNumberOfComponents() == 1) {
+			try {
+				return Integer.valueOf(this.getComponentValue(0)).toString();
+			} catch (Exception ignorable) {}
+		}
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append('(');
-		for (int i = 0; i < values.length; ++i)
+		
+		for (int i = 0; i < values.length; ++i) {
 			sb.append(values[i]);
+			if (i != values.length - 1) 
+				sb.append(", ");
+		}
+		
 		sb.append(')');
+		
 		return sb.toString();
 	}
 	

@@ -1,5 +1,7 @@
 package hr.fer.zemris.lab1.fuzzy;
 
+import java.util.NoSuchElementException;
+
 /**
  * Abstract implementation of <code>IDomain</code> interface.
  *  
@@ -34,8 +36,12 @@ public abstract class Domain implements IDomain {
 	
 	@Override
 	public DomainElement elementForIndex(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		for (DomainElement e : this) {
+			if (idx == 0)
+				return e;
+			--idx;
+		}
+		throw new NoSuchElementException();
 	}
 	
 }
