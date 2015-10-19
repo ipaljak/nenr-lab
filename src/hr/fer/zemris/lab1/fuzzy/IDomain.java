@@ -1,6 +1,5 @@
 package hr.fer.zemris.lab1.fuzzy;
 
-import java.util.Iterator;
 
 /**
  * IDomain interface models the domain and all of its functionalities.
