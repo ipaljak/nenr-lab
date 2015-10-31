@@ -62,7 +62,7 @@ public class CompositeDomain extends Domain{
 			for (int i = 0; i < cnt; ++i) {
 				cursorValue[i] = ((SimpleDomain) CompositeDomain.this.getComponent(i)).getFirst();
 			}
-		}
+		} 
 		
 		private boolean finished() {
 			for (int i = 0; i < cnt; ++i) {

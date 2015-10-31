@@ -43,5 +43,5 @@ public abstract class Domain implements IDomain {
 		}
 		throw new NoSuchElementException();
 	}
-	
+
 }
