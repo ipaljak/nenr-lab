@@ -13,6 +13,11 @@ import hr.fer.zemris.lab1.fuzzy.SimpleDomain;
 public class Domains {
 	
 	public static final IDomain ANGLE = new SimpleDomain(-90, 91);
+	
 	public static final IDomain DISTANCE = new SimpleDomain(0, 1301);
-
+	
+	public static final IDomain VELOCITY = new SimpleDomain(0, 101);
+	
+	public static final IDomain ACCELERATION = new SimpleDomain(-50, 51);
+	
 }
