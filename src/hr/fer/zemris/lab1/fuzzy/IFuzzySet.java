@@ -13,4 +13,6 @@ public interface IFuzzySet {
 	
 	public double getValueAt(DomainElement e);
 	
+	public IFuzzySet cutAt(double mu);
+	
 }

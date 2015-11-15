@@ -5,7 +5,7 @@ import hr.fer.zemris.lab1.fuzzy.DomainElement;
 import hr.fer.zemris.lab1.fuzzy.IDomain;
 import hr.fer.zemris.lab1.fuzzy.IFuzzySet;
 import hr.fer.zemris.lab1.fuzzy.MutableFuzzySet;
-import hr.fer.zemris.lab2.fuzzy.Relations;
+import hr.fer.zemris.lab2.relations.Relations;
 
 public class Primjer1 {
 	public static void main(String[] args) throws Exception {

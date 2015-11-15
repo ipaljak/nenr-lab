@@ -34,4 +34,16 @@ public class MutableFuzzySet implements IFuzzySet {
 		return this.domain;
 	}
 	
+	@Override
+	public IFuzzySet cutAt(double mu) {
+		MutableFuzzySet ret = new MutableFuzzySet(this.domain);
+		for (DomainElement e : this.domain) {
+			if (this.getValueAt(e) <= mu) 
+				ret = ret.set(e, this.getValueAt(e));
+			else 
+				ret = ret.set(e, 0);
+		}
+		return ret;
+	}
+	
 }

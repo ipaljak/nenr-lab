@@ -1,4 +1,4 @@
-package hr.fer.zemris.lab2.fuzzy;
+package hr.fer.zemris.lab2.relations;
 
 import hr.fer.zemris.lab1.fuzzy.CompositeDomain;
 import hr.fer.zemris.lab1.fuzzy.DomainElement;
