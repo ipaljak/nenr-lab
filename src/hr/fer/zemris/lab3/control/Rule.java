@@ -27,7 +27,7 @@ public class Rule {
 		double mu = 1;
 		for (int i = 0; i < antecedent.size(); ++i) {
 			if (antecedent.get(i) == null) continue;
-			mu = Math.min(mu, antecedent.get(i).getValueAt(DomainElement.of(values[i]))); 
+			mu *= antecedent.get(i).getValueAt(DomainElement.of(values[i])); 
 		}
 		return consequent.cutAt(mu);
 	}

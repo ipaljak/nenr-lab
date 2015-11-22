@@ -21,7 +21,7 @@ public class AcceleratorFuzzySystem extends FuzzySystem {
 	@Override
 	protected void addRules() {
 		
-		// If going tpp slow then speed up
+		// If going too slow then speed up
 		IFuzzySet[] a1 = {null, null, null, null, Sets.GOING_SLOW, null};
 		IFuzzySet b1 = Sets.SPEED_UP;
 		

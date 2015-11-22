@@ -19,6 +19,7 @@ public class Run {
 		FuzzySystem HelmFS = new HelmFuzzySystem(def);
 		FuzzySystem AcceleratorFS = new AcceleratorFuzzySystem(def);
 		
+		
 		while (true) {
 			int vals[] = new int[6];
 			for (int i = 0; i < 6; ++i)
