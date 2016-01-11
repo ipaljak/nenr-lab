@@ -68,6 +68,8 @@ public class Point {
 		double block = D / (M - 1);
 		double nextDist = block, currDist = 0; 
 		
+		ret.add(pts.get(0));
+		
 		for (int i = 1; i < pts.size(); ++i) {
 			currDist += getDist(pts.get(i - 1), pts.get(i));
 			if (currDist >= nextDist) {
@@ -75,6 +77,9 @@ public class Point {
 				ret.add(pts.get(i));
 			}
 		}
+		
+		while (ret.size() != M) 
+			ret.add(pts.get(pts.size() - 1));
 		
 		return ret;	
 		

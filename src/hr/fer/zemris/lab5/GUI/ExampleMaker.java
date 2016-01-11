@@ -139,7 +139,7 @@ public class ExampleMaker extends JFrame {
 	
 	private void storeExample(ArrayList<Point> pts, int mask, String path) throws IOException {
 		Writer out = new BufferedWriter(new FileWriter(path, true));
-		ArrayList<Point> features = Point.getFeatures(pts, 50);
+		ArrayList<Point> features = Point.getFeatures(pts, 20);
 		for (Point f : features) {
 			out.write(f.toString());
 		}
