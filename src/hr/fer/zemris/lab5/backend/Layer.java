@@ -22,7 +22,7 @@ public class Layer implements Iterable<Neuron> {
 	
 	public void fillLayer(int size, boolean isInputLayer, int nextLayerSize) {
 		for (int i = 0; i < size; ++i) {
-			this.addNeuron(new Neuron(isInputLayer, nextLayerSize));
+			this.addNeuron(new Neuron(isInputLayer, nextLayerSize, i));
 		}
 	}
 	

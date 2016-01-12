@@ -22,9 +22,10 @@ public class Neuron {
 	private List<Double> weights;
 	private List<Double> tempWeights;
 	
-	public Neuron(boolean inInputLayer, int nextLayerSize) {
+	public Neuron(boolean inInputLayer, int nextLayerSize, int id) {
 		this.inInputLayer = inInputLayer;
 		this.weights = new ArrayList<Double>();
+		this.id = id;
 		delta = 0;
 		setWeights(nextLayerSize);
 	}
@@ -39,15 +40,6 @@ public class Neuron {
 	
 	public void setW0(double w0) {
 		this.w0 = w0;
-	}
-	
-	public void setWeights(ArrayList<Double> weights) {
-		this.weights = weights;
-		this.tempWeights = new ArrayList<Double>(this.weights);
-	}
-	
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public void setDelta(double delta) {
@@ -86,7 +78,6 @@ public class Neuron {
 		}
 		
 		this.y = sigm(net);
-		
 	}
 	
 	private double sigm(double x) {

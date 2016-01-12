@@ -14,7 +14,7 @@ import java.util.List;
  *
  */
 
-public abstract class NeuralNet {
+public class NeuralNet {
 
 	protected int maxIter;
 	protected int sampleSize;
@@ -71,7 +71,7 @@ public abstract class NeuralNet {
 		
 	}
 
-	private void evaluate(List<Double> sample) {
+	public void evaluate(List<Double> sample) {
 		
 		for (int i = 0; i < sample.size(); ++i) {
 			layers.get(0).getNeuron(i).setW0(sample.get(i));
@@ -83,6 +83,16 @@ public abstract class NeuralNet {
 	
 	}
 	
+	public String getLetter() {
+		String[] letters = {"Alpha", "Beta", "Gamma", "Delta", "Epsilon"};
+		int pivot = 0;
+		Layer last = layers.get(layers.size() - 1);
+		for (int i = 1; i < 5; ++i) 
+			if (last.getNeuron(i).getY() > last.getNeuron(pivot).getY())
+				pivot = i;
+		return letters[pivot];
+	}
+	
 	public double getError() {
 		double totalError = 0;
 		for (int i = 0; i < samples.size(); ++i) {
@@ -90,24 +100,25 @@ public abstract class NeuralNet {
 			for (int j = 0; j < 5; ++j) {
 				double diff = (double) answers.get(i).get(j) - layers.get(layers.size() - 1).getNeuron(j).getY();
 				totalError += diff * diff;
-				System.out.println(layers.get(layers.size() - 1).getNeuron(j).getY());
 			}
 		}
 		return totalError;
 	}
 	
-	public abstract void learn();
+//	public abstract void learn();
 	
-	public void updateWeights(List<List<Double>> samples, List<List<Integer>> answers) {
+	public void updateWeights(List<List<Double>> samples, List<List<Integer>> answers, int batchSize) {
 		
 		int outLayer = layers.size() - 1;
-		
+
 		for (int i = 0; i < samples.size(); ++i) {
 			
 			this.evaluate(samples.get(i));
 			
 			for (int j = 0; j < 5; ++j) {
-				double outDelta = Math.pow(layers.get(outLayer).getNeuron(j).getY() - (double) answers.get(i).get(j), 2);
+				//double outDelta = Math.pow(layers.get(outLayer).getNeuron(j).getY() - (double) answers.get(i).get(j), 2);
+				double y = layers.get(outLayer).getNeuron(j).getY();
+				double outDelta = y * (1 - y)  * (answers.get(i).get(j) - y);
 				layers.get(outLayer).getNeuron(j).setDelta(outDelta); 
 			}
 			
@@ -115,12 +126,26 @@ public abstract class NeuralNet {
 				layers.get(j).updateWeights(layers.get(j + 1), learningRate);
 				layers.get(j).updateDeltas(layers.get(j + 1));
 			}
-			
+
+			if(i % batchSize == 0) {
+				for (Layer l : layers) 
+					l.swapWeights();
+			}
+
 		}
-		
-		for (Layer l : layers) 
-			l.swapWeights();
-		
+
 	}
+	
+	public void learn(int batchSize) {
+		
+		for(int i = 0; i < this.maxIter; ++i) {
+			
+			double error = this.getError();
+			System.out.println(i + " " + error);
+
+			updateWeights(samples, answers, batchSize);
+		}
+	}
+
 	
 }

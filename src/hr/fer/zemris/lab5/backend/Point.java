@@ -84,6 +84,15 @@ public class Point {
 		return ret;	
 		
 	}
+	
+	public static ArrayList<Double> fromFeatures(ArrayList<Point> fts) {
+		ArrayList<Double> ret = new ArrayList<Double>();
+		for (Point p : fts) {
+			ret.add(p.x);
+			ret.add(p.y);
+		}
+		return ret;
+	}
 
 	@Override
 	public String toString() {

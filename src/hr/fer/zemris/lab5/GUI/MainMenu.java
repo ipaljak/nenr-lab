@@ -57,6 +57,15 @@ public class MainMenu extends JFrame{
 			}
 		});
 		
+		test.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame classifier = new ClassifierConfig("Classifier");
+				classifier.setVisible(true);
+			}
+		});
+		
 		exit.addActionListener(new ActionListener() {
 			
 			@Override
