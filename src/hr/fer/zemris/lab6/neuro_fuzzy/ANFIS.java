@@ -33,6 +33,10 @@ public class ANFIS {
 				samples.add(new Sample(x, y));
 		
 	}
+
+	public List<Rule> getRules() {
+		return rules;
+	}
 	
 	private double evaluate(double x, double y) {
 		sumW = 0;
@@ -45,12 +49,12 @@ public class ANFIS {
 		return sumWZ / sumW;
 	}
 	
-	private List<Double> getErrors() {
+	public List<Double> getErrors() {
 		List<Double> ret = new ArrayList<Double>();
 		for (int i = 0; i < samples.size(); ++i) 
-			ret.add(Math.abs(samples.get(i).z - Math.abs(evaluate(samples.get(i).x, samples.get(i).y))));
+			ret.add(Math.abs(samples.get(i).z - evaluate(samples.get(i).x, samples.get(i).y)));
 		return ret;
-	}
+	}	
 
 	private double MSE() {
 		double ret = 0;
@@ -99,6 +103,7 @@ public class ANFIS {
 			
 			if (iter % 500 == 0)
 				System.out.println("Iteration #"+iter + ": MSE = " + MSE());
+		
 		}
 		
 	}
